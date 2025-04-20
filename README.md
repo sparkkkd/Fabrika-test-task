@@ -9,7 +9,6 @@ Gravity UI
 ### Для запуска клиента:  
 ```
 npm install  
-npx prisma db push  
 npm run dev
 ```
   
@@ -23,6 +22,7 @@ class-validator
 ### Для запуска сервера:  
 ```
 npm install
+npx prisma db push
 npm start
 ```
   
