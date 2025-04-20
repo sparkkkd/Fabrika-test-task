@@ -38,6 +38,7 @@ export class TaskService {
 			where: { id },
 			data: {
 				title: dto.title,
+				completed: dto.completed && dto.completed,
 			},
 		})
 	}

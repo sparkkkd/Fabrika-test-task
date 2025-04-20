@@ -1,10 +1,20 @@
-import { StrictMode } from 'react'
+import { ThemeProvider } from '@gravity-ui/uikit'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+
+import { Provider } from 'react-redux'
+import { store } from './store/store.ts'
+
 import App from './App.tsx'
 
+import '@gravity-ui/uikit/styles/fonts.css'
+import '@gravity-ui/uikit/styles/styles.css'
+
+import './index.css'
+
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+	<ThemeProvider theme='dark'>
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</ThemeProvider>
 )
