@@ -20,6 +20,6 @@ export class TaskService {
 	}
 
 	static async delete(id: string) {
-		return $api.delete(`/tasks/${id}`)
+		return $api.delete<ITaskWithInfo>(`/tasks/${id}`)
 	}
 }

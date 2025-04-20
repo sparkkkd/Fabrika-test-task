@@ -1,6 +1,10 @@
 import { FC } from 'react'
 import clsx from 'clsx'
 
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { ITaskSchema, taskSchema } from '../../models/task.schema'
+
 import { useAppDispatch } from '../../store/hooks'
 import { createTask } from '../../store/slices/taskSlice/taskThunks'
 
@@ -8,9 +12,6 @@ import { TextInput } from '@gravity-ui/uikit'
 import { Button } from '@gravity-ui/uikit'
 
 import styles from './AddTask.module.sass'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { ITaskSchema, taskSchema } from './task.schema'
 
 interface AddTaskProps {
 	classname?: string

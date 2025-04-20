@@ -5,19 +5,44 @@
 	border-bottom: 1px solid rgba(255, 255, 255, .2)
 
 .group
+	width: 100%
 	display: flex
 	flex-direction: column
 	gap: 5px
 
 .title
+	width: fit-content
+	position: relative
 	font-size: 19px
+	transition: color .3s
+	&::before
+		content: ''
+		position: absolute
+		left: 0
+		top: 50%
+		width: 100%
+		height: 2px
+		background-color: rgba(255, 255, 255, .5)
+		transition: all .3s
+		transform: translateY(-50%) scaleX(0)
+		transform-origin: left
+
+.completed
+	color: rgba(255, 255, 255, .3)
+	&::before
+		transform: translateY(-50%) scaleX(1)
 
 .subtitle
 	color: rgba(255, 255, 255, .3)
 
-.edit
+.actions
 	margin-left: auto
+	display: flex
+	align-items: center
+	gap: 10px
 	font-size: 24px
+
+.edit
 	cursor: pointer
 	path:nth-child(2)
 		transition: all .3s
@@ -27,11 +52,10 @@
 			fill: #fff
 
 .delete
-	font-size: 24px
 	cursor: pointer
 	path:nth-child(2)
 		transition: all .3s
 		fill: #707070
 	&:hover
 		path:nth-child(2)
-			fill: #fff
+			fill: #940020

@@ -24,13 +24,11 @@ export class TaskService {
 	}
 
 	async create(dto: TaskDto) {
-		const task = await this.prisma.task.create({
+		return await this.prisma.task.create({
 			data: {
 				title: dto.title,
 			},
 		})
-
-		return task
 	}
 
 	async update(id: string, dto: TaskDto) {

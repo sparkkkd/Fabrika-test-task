@@ -31,19 +31,19 @@ export class TaskController {
 	@HttpCode(200)
 	@Post()
 	async create(@Body() dto: TaskDto) {
-		this.taskService.create(dto)
+		return this.taskService.create(dto)
 	}
 
 	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Put(':id')
 	async update(@Body() dto: TaskDto, @Param('id') id: string) {
-		this.taskService.update(id, dto)
+		return this.taskService.update(id, dto)
 	}
 
 	@HttpCode(200)
 	@Delete(':id')
 	async delete(@Param('id') id: string) {
-		this.taskService.delete(id)
+		return this.taskService.delete(id)
 	}
 }

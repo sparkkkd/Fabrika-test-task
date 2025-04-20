@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ITaskWithInfo } from '../../../models/task.model'
-import { createTask, getAllTasks, updateTask } from './taskThunks'
+import { createTask, deleteTask, getAllTasks, updateTask } from './taskThunks'
 
 interface IInitialState {
 	tasks: ITaskWithInfo[]
@@ -40,10 +40,10 @@ const taskSlice = createSlice({
 			state.errorMessage = ''
 			state.isLoading = true
 		})
-		builder.addCase(createTask.fulfilled, (state, { payload }) => {
+		builder.addCase(createTask.fulfilled, (state, action) => {
 			state.errorMessage = ''
 			state.isLoading = false
-			if (payload) state.tasks.push(payload)
+			if (action.payload) state.tasks.push(action.payload)
 		})
 		builder.addCase(createTask.rejected, (state, action) => {
 			state.errorMessage = action.error.message || ''
@@ -69,6 +69,23 @@ const taskSlice = createSlice({
 			state.isLoading = false
 		})
 		// End updateTask
+
+		// Start deleteTask
+		builder.addCase(deleteTask.pending, (state) => {
+			state.errorMessage = ''
+			state.isLoading = true
+		})
+		builder.addCase(deleteTask.fulfilled, (state, { payload }) => {
+			state.errorMessage = ''
+			state.isLoading = false
+			if (payload)
+				state.tasks = state.tasks.filter((task) => task.id !== payload.id)
+		})
+		builder.addCase(deleteTask.rejected, (state, action) => {
+			state.errorMessage = action.error.message || ''
+			state.isLoading = false
+		})
+		// End deleteTask
 	},
 })
 
